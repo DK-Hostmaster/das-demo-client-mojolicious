@@ -14,6 +14,10 @@ Open your browser at:
 
     http://127.0.0.1:3000/
 
+# COMPATIBILITY
+
+Please note that the offered support for asynchronous calls (AJAX/JSONP) is not supported by the service until version 1.1.0.
+
 # DEPENDENCIES
 
 This client is implemented using Mojolicious::Lite in addition the following
