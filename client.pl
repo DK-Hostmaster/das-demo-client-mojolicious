@@ -18,7 +18,7 @@ get '/' => sub {
   my $self = shift;
 
   my $params = $self->req->params->to_hash;
-  
+
   my $ready_to_submit = 1; #this if for first time rendering without contactin endpoint
   my $userid          = 'REG-999999';
   my $secret          = 'secret';
