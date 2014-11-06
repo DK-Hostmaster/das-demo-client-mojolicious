@@ -10,7 +10,6 @@ use Mojo::UserAgent;
 plugin 'ConsoleLogger';
 
 Readonly::Scalar my $endpoint => 'https://das-sandbox.dk-hostmaster.dk/';
-#Readonly::Scalar my $endpoint => 'http://localhost:5000/';
 
 our $VERSION = '1.0.0';
 
