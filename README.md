@@ -21,9 +21,9 @@ Open your browser at:
 
 The application can be used using `docker`
 
-    $ docker build -t dsu-demo-client .
+    $ docker build -t das-demo-client .
 
-    $ docker run --rm -p 3000:3000 dsu-demo-client
+    $ docker run --rm -p 3000:3000 das-demo-client
 
 Open your browser at:
 
