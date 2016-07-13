@@ -1,3 +1,6 @@
+
+![DAS screenshot][images/main-screen.png]
+
 # NAME
 
 DK Hostmaster DAS service demo client
@@ -8,11 +11,23 @@ This documentation describes version 1.0.0
 
 # USAGE
 
-    $ morbo  client.pl
+    $ morbo -l https://*:3000 client.pl
 
 Open your browser at:
 
-    http://127.0.0.1:3000/
+    https://127.0.0.1:3000/
+
+## Using `docker`
+
+The application can be used using `docker`
+
+    $ docker build -t dsu-demo-client .
+
+    $ docker run --rm -p 3000:3000 dsu-demo-client
+
+Open your browser at:
+
+    https://localhost:3000/
 
 # COMPATIBILITY
 
@@ -39,7 +54,7 @@ The main site for this client is the Github repository.
 
 # COPYRIGHT
 
-This software is under copyright by DK Hostmaster A/S 2014-2015
+This software is under copyright by DK Hostmaster A/S 2014-2016
 
 # LICENSE
 
