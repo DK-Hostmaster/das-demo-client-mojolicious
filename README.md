@@ -1,5 +1,5 @@
 
-![DAS screenshot][images/main-screen.png]
+![screenshot](images/main-screen.png)
 
 # NAME
 
