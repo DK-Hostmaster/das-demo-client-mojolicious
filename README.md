@@ -17,6 +17,16 @@ Open your browser at:
 
     https://127.0.0.1:3000/
 
+## Using `carton`
+
+    $ carton
+
+    $ carton exec -- morbo -l https://*:3000 client.pl
+
+Open your browser at:
+
+    https://127.0.0.1:3000/
+
 ## Using `docker`
 
 The application can be used using `docker`
