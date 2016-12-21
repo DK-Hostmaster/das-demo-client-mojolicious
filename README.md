@@ -39,6 +39,14 @@ Open your browser at:
 
     https://localhost:3000/
 
+## LOGGING
+
+Please note that the application uses [Mojolicious::Plugin::ConsoleLogger](https://metacpan.org/pod/Mojolicious::Plugin::ConsoleLogger), logging to a file is there for suprpessed and logging is available in your browsers console instead.
+
+- Google Chrome OSX: `Menu > Developer > View Javascript Console`  (`<alt>` - `<command>` - 'j')
+
+- Mozilla Firefox OSX: `Menu > Tools > Web Developer > Webconsole` (`<alt>` - `<command>` - `k`) 
+
 # COMPATIBILITY
 
 Please note that the offered support for asynchronous calls (AJAX/JSONP) is not supported by the service before version 1.1.0.
@@ -52,7 +60,7 @@ Perl modules are used all available from CPAN.
 - [Mojo::UserAgent](https://metacpan.org/pod/Mojo::UserAgent)
 - [Mojolicious::Plugin::ConsoleLogger](https://metacpan.org/pod/Mojolicious::Plugin::ConsoleLogger)
 
-In addition to the above Perl modules, the client uses [Twitter Bootstrap](http://getbootstrap.com/) and hereby jQuery. These are automatically downloaded via CDNs and are not distributed with the client software.
+In addition to the above Perl modules, the client uses [Twitter Bootstrap](http://getbootstrap.com/) and hereby **jQuery**. These are automatically downloaded via CDNs and are not distributed with the client software.
 
 # SEE ALSO
 
@@ -70,4 +78,4 @@ This software is under copyright by DK Hostmaster A/S 2014-2016
 
 This software is licensed under the MIT software license
 
-Please refer to the LICENSE file accompanying this file.
+Please refer to the [LICENSE file](LICENSE) accompanying this file.
