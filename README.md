@@ -43,7 +43,7 @@ Open your browser at:
 
 Please note that the application uses [Mojolicious::Plugin::ConsoleLogger](https://metacpan.org/pod/Mojolicious::Plugin::ConsoleLogger), logging to a file is there for suprpessed and logging is available in your browsers console instead.
 
-- Google Chrome OSX: `Menu > Developer > View Javascript Console`  (`<alt>` - `<command>` - 'j')
+- Google Chrome OSX: `Menu > Developer > View Javascript Console`  (`<alt>` - `<command>` - `j`)
 
 - Mozilla Firefox OSX: `Menu > Tools > Web Developer > Webconsole` (`<alt>` - `<command>` - `k`) 
 
