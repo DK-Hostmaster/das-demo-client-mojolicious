@@ -54,7 +54,7 @@ Please note that the offered support for asynchronous calls (AJAX/JSONP) is not 
 # DEPENDENCIES
 
 This client is implemented using Mojolicious::Lite in addition the following
-Perl modules are used all available from CPAN.
+Perl modules are used all available from CPAN. The exact list in available in the [`cpanfile`](cpanfile).
 
 - [Readonly](https://metacpan.org/pod/Readonly)
 - [Mojo::UserAgent](https://metacpan.org/pod/Mojo::UserAgent)
