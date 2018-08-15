@@ -20,3 +20,5 @@ nytprof.out
 *.sublime-project
 *.sublime-workspace
 local
+.vstags
+*.code-workspace
