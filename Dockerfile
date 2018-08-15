@@ -6,7 +6,7 @@ RUN apt-get install -y curl build-essential carton libssl-dev
 
 COPY . /usr/src/app
 WORKDIR /usr/src/app
-RUN carton install --deployment
+RUN carton install
 
 EXPOSE 3000
 
