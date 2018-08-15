@@ -2,11 +2,11 @@ FROM debian:jessie
 MAINTAINER jonasbn
 
 RUN apt-get update -y
-RUN apt-get install -y curl build-essential carton libssl-dev 
+RUN apt-get install -y curl build-essential carton libssl-dev
 
 COPY . /usr/src/app
 WORKDIR /usr/src/app
-RUN carton
+RUN carton install --deployment
 
 EXPOSE 3000
 
