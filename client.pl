@@ -11,7 +11,7 @@ plugin 'ConsoleLogger';
 
 Readonly::Scalar my $endpoint => 'https://das-sandbox.dk-hostmaster.dk/';
 
-our $VERSION = '1.0.0';
+our $VERSION = '1.0.1';
 
 get '/' => sub {
   my $self = shift;

@@ -7,7 +7,7 @@ DK Hostmaster DAS service demo client
 
 # VERSION
 
-This documentation describes version 1.0.0
+This documentation describes version 1.0.X
 
 # USAGE
 
