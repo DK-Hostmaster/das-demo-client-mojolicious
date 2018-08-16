@@ -9,7 +9,7 @@ use Mojo::UserAgent;
 
 plugin 'ConsoleLogger';
 
-Readonly::Scalar my $endpoint => 'https://das-sandbox.dk-hostmaster.dk/';
+Readonly::Scalar my $endpoint => 'http://das_das-server_1:3001/';
 
 our $VERSION = '1.0.0';
 
@@ -18,7 +18,7 @@ get '/' => sub {
 
   my $params = $self->req->params->to_hash;
 
-  my $ready_to_submit = 1; #this if for first time rendering without contactin endpoint
+  my $ready_to_submit = 1; #this if for first time rendering without contacting endpoint
   my $userid          = 'REG-999999';
   my $secret          = 'secret';
   my $action          = 'domain/is_available';
@@ -51,7 +51,7 @@ get '/' => sub {
 
       app->log->info('Request succeeded, evaluating response (hack)');
 
-      #here be json/text/xml parsing code, but since we only want to demonstrate protocol 
+      #here be json/text/xml parsing code, but since we only want to demonstrate protocol
       #and leave the actual use of the result up to the user, we just hack it
       if ($result =~ m/\b(available)\b/) {
         $panelheading = 'panel-success';
@@ -62,10 +62,13 @@ get '/' => sub {
       }
       $info = "Status for domain: $domain is: $1, see also response below";
     } else {
-      ($info, $code) = $tx->error;
+      my $error = $tx->error;
       $panelheading = 'panel-danger';
 
-      app->log->fatal($code, $info);
+      $code = $error->{code};
+      $info = $error->{message};
+
+      app->log->fatal($code.': '.$info);
     }
   } else {
     app->log->info('Initial rendering');
@@ -80,7 +83,7 @@ get '/' => sub {
     submit       => $ready_to_submit, #for distinction between initial and following renderings
     url          => $url, #our constructed URL for ajax
     mediatype    => $mediatype, #for echoing of parameter
-    info         => $info, #if we get an error or send other information 
+    info         => $info, #if we get an error or send other information
     code         => $code, #response code
     panelheading => $panelheading, #visualising the state of the request
   );
