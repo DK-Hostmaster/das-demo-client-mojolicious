@@ -72,7 +72,7 @@ The main site for this client is the Github repository.
 
 # COPYRIGHT
 
-This software is under copyright by DK Hostmaster A/S 2014-2016
+This software is under copyright by DK Hostmaster A/S 2014-2018
 
 # LICENSE
 
