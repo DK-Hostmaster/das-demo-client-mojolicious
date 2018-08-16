@@ -49,7 +49,7 @@ Please note that the application uses [Mojolicious::Plugin::ConsoleLogger](https
 
 # COMPATIBILITY
 
-Please note that the offered support for asynchronous calls (AJAX/JSONP) is not supported by the service before version 1.1.0.
+Please note that the offered support for asynchronous calls (AJAX/JSONP) is not supported by the **DAS** service before version 1.1.0.
 
 # DEPENDENCIES
 
