@@ -11,7 +11,7 @@ plugin 'ConsoleLogger';
 
 Readonly::Scalar my $endpoint => 'https://das-sandbox.dk-hostmaster.dk/';
 
-our $VERSION = '1.0.1';
+our $VERSION = '1.1.0';
 
 get '/' => sub {
   my $self = shift;
@@ -25,6 +25,14 @@ get '/' => sub {
   my $mediatype       = 'application/json';
   my $panelheading    = 'panel-default';
   my $domain          = '';
+
+  if ($params->{userid}) {
+    $userid = $params->{userid};
+  }
+
+  if ($params->{secret}) {
+    $secret = $params->{secret};
+  }
 
   #matches both: http://localhost:5000 and https://das-sandbox.dk-hostmaster.dk
   my ($protocol, $hostname) = $endpoint =~ m{^(http(?:s)?://)([\w.:-]+)/$};
@@ -59,8 +67,11 @@ get '/' => sub {
         $panelheading = 'panel-warning';
       } elsif ($result =~ m/\b(blocked)\b/) {
         $panelheading = 'panel-info';
+      } elsif ($result =~ m/\b(enqueued)\b/) {
+        $panelheading = 'panel-warning';
       }
       $info = "Status for domain: $domain is: $1, see also response below";
+
     } else {
       my $error = $tx->error;
       $panelheading = 'panel-danger';
@@ -126,24 +137,41 @@ __DATA__
 
     <div class="form-group">
         <div class="control-group">
-            <div class="col-md-2">
-                <label class="control-label" for="domain.name">Domain name:</label>
-            </div>
 
-            <div class="col-md-5">
-                <input id="domainname" class="form-control" placeholder="domain name" type="text" name="domain" value="<%= $domain %>" />
+            <div class="col-md-2">
+                <label class="control-label" for="userid.name">User-id:</label>
             </div>
-        </div>
+            <div class="col-md-5">
+                <input id="userid" class="form-control" placeholder="userid" type="text" name="userid" value="<%= $userid %>" />
+            </div>
 
         <div class="col-md-5">
-
           <div id="panel" class="panel <%= $panelheading %>">
               <div id="panelheading" class="panel-heading">Status for request<%= $code?': '.$code:'' %></div>
               <div class="panel-body" style="word-wrap:break-word;">
                   <p id="panelbody"><%= $info?$info:'Information and status on your request' %></p>
               </div>
           </div>
+            </div>
 
+            <div class="col-md-2">
+                <label class="control-label" for="secret.name">Secret:</label>
+        </div>
+            <div class="col-md-5">
+                <input id="secret" class="form-control" type="password" name="secret" value="<%= $secret %>" />
+    </div>
+
+            <!-- Force next columns to break to new line -->
+            <div class="clearfix visible-xs-block"></div>
+
+            <hr />
+
+            <div class="col-md-2">
+                <label class="control-label" for="domain.name">Domain name:</label>
+            </div>
+            <div class="col-md-5">
+                <input id="domainname" class="form-control" placeholder="domain name" type="text" name="domain" value="<%= $domain %>" />
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -188,11 +216,39 @@ __DATA__
 
       // for handling change to domainname text field
       $("#domainname").keyup(function() {
-        // matching domainpart of URL:
+        // matching domain part of URL:
         // http://REG-999999:secret@localhost:5000/domain/is_available/domainname.dk
-        var replace_domainname = /(is_available\/)([\w+\.]*)/;
-        var url = '<%= $url %>';
-        var newurl = url.replace(replace_domainname, '$1' + $("#domainname").val());
+        var replace_domainname = /^http(?:s)*:\/\/[\w+\.\-]*:[\S]*@[\w+\.\-]*:[\d]+\/domain\/is_available\/([\w+\.\-]*)/;
+        var url = $('input[name=url]').val();
+        var match = replace_domainname.exec(url);
+
+        var newurl = url.replace(match[1], $("#domainname").val());
+
+        $("#echo_url").text(newurl);
+      });
+
+      // for handling change to userid text field
+      $("#userid").keyup(function() {
+        // matching userid part of URL:
+        // http://REG-999999:secret@localhost:5000/domain/is_available/domainname.dk
+        var replace_userid = /^http(?:s)*:\/\/([\w+\.\-]*):[\S]*@/;
+        var url = $('input[name=url]').val();
+        var match = replace_userid.exec(url);
+
+        var newurl = url.replace(match[1], $("#userid").val());
+
+        $("#echo_url").text(newurl);
+      });
+
+      // for handling change to domainname text field
+      $("#secret").keyup(function() {
+        // matching secret part of URL:
+        // http://REG-999999:secret@localhost:5000/domain/is_available/domainname.dk
+        var replace_secret = /^http(?:s)*:\/\/[\w+\.\-]*:([\S]*)@/;
+        var url = $('input[name=url]').val();
+        var match = replace_secret.exec(url);
+
+        var newurl = url.replace(match[1], $("#secret").val());
 
         $("#echo_url").text(newurl);
       });
